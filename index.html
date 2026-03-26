@@ -3,26 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Isabela — Storymaker de Eventos</title>
+<title>Seu Nome — Storymaker de Eventos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black:    #0c0c0c;
-    --dark:     #141414;
-    --mid:      #1e1e1e;
-    --border:   #2a2a2a;
-    --muted:    #555;
-    --subtle:   #888;
-    --light:    #c8c8c8;
-    --white:    #f2f2f2;       /* branco limpo */
-    --accent:   #d4d4d4;       /* cinza claro — neutro e elegante */
-    --font-h:   'Cormorant Garamond', serif;
-    --font-b:   'Instrument Sans', sans-serif;
+    --black:  #0c0c0c;
+    --dark:   #141414;
+    --mid:    #1e1e1e;
+    --border: #2a2a2a;
+    --muted:  #555;
+    --subtle: #888;
+    --light:  #c8c8c8;
+    --white:  #f2f2f2;
+    --font-h: 'Cormorant Garamond', serif;
+    --font-b: 'Instrument Sans', sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; font-size: 16px; }
+  html { scroll-behavior: smooth; }
 
   body {
     background: var(--black);
@@ -33,7 +32,6 @@
     overflow-x: hidden;
   }
 
-  /* ── GRAIN OVERLAY ── */
   body::after {
     content: '';
     position: fixed; inset: 0; z-index: 9000;
@@ -42,581 +40,339 @@
     opacity: 0.03;
   }
 
-  /* Compensa a nav fixa ao clicar nos links de navegação */
-  section[id] {
-    scroll-margin-top: 72px;
+  ::-webkit-scrollbar { width: 2px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); }
+
+  .accent-line {
+    display: inline-block; width: 32px; height: 1px;
+    background: var(--subtle); vertical-align: middle; margin-right: 12px;
   }
 
-  /* ── UTILITÁRIOS ── */
-  .tag {
-    display: inline-block;
-    font-family: var(--font-b);
-    font-size: 0.62rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--subtle);
-    padding: 5px 12px;
-    border: 1px solid var(--border);
-  }
-  .divider {
-    width: 100%; height: 1px;
-    background: var(--border);
-  }
-
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 500;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 22px 56px;
-    height: 72px;
+    padding: 0 56px; height: 72px;
     background: rgba(12,12,12,0.97);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    transition: background 0.3s;
   }
   .nav-name {
-    font-family: var(--font-h);
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--white);
-    text-decoration: none;
+    font-family: var(--font-h); font-size: 1.25rem; font-weight: 400;
+    letter-spacing: 0.08em; color: var(--white); text-decoration: none;
   }
-  .nav-links {
-    display: flex; gap: 36px; list-style: none; align-items: center;
-  }
+  .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
   .nav-links a {
-    font-size: 0.7rem; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--subtle);
-    text-decoration: none; transition: color 0.25s;
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--subtle); text-decoration: none; transition: color 0.25s;
   }
   .nav-links a:hover { color: var(--white); }
   .nav-cta {
-    background: var(--white) !important;
-    color: var(--black) !important;
-    padding: 9px 22px;
-    font-weight: 500 !important;
+    background: var(--white) !important; color: var(--black) !important;
+    padding: 9px 22px; font-weight: 500 !important;
     letter-spacing: 0.12em !important;
-    transition: opacity 0.25s !important;
   }
-  .nav-cta:hover { opacity: 0.85; }
+  .nav-cta:hover { opacity: 0.85; color: var(--black) !important; }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: grid; grid-template-columns: 1fr 1fr;
     align-items: end;
     padding: 180px 56px 80px;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
-
-  /* Fundo com gradiente sutil */
   .hero::before {
     content: '';
     position: absolute; inset: 0;
     background: linear-gradient(160deg, var(--dark) 0%, var(--black) 100%);
   }
-
-  .hero-left { position: relative; z-index: 2; padding-bottom: 8px; }
-
+  .hero-left { position: relative; z-index: 2; }
   .hero-eyebrow {
-    font-size: 0.65rem; letter-spacing: 0.28em;
-    text-transform: uppercase; color: var(--subtle);
-    margin-bottom: 28px;
-    display: flex; align-items: center; gap: 0;
+    font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--subtle); margin-bottom: 28px; display: flex; align-items: center;
   }
-
   h1.hero-title {
-    font-family: var(--font-h);
-    font-size: clamp(4.2rem, 7vw, 8.5rem);
-    font-weight: 300;
-    line-height: 0.92;
-    color: var(--white);
-    letter-spacing: -0.01em;
-    margin-bottom: 32px;
+    font-family: var(--font-h); font-size: clamp(4rem, 7vw, 8.5rem);
+    font-weight: 300; line-height: 0.92; color: var(--white);
+    letter-spacing: -0.01em; margin-bottom: 32px;
   }
-  h1.hero-title em {
-    font-style: italic;
-    color: var(--white);
-  }
-
+  h1.hero-title em { font-style: italic; color: var(--white); }
   .hero-sub {
-    font-size: 0.9rem;
-    color: var(--subtle);
-    max-width: 380px;
-    line-height: 1.75;
-    margin-bottom: 44px;
+    font-size: 0.9rem; color: var(--subtle); max-width: 380px;
+    line-height: 1.75; margin-bottom: 44px;
   }
-  .hero-sub strong { color: var(--light); font-weight: 500; }
-
   .hero-actions { display: flex; align-items: center; gap: 24px; }
 
   .btn-primary {
-    background: var(--white);
-    color: var(--black);
-    padding: 13px 32px;
-    font-family: var(--font-b);
-    font-size: 0.7rem; font-weight: 500;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    text-decoration: none;
-    transition: opacity 0.25s;
-    display: inline-block;
+    background: var(--white); color: var(--black);
+    padding: 13px 32px; font-family: var(--font-b); font-size: 0.7rem;
+    font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    text-decoration: none; display: inline-block; transition: opacity 0.25s;
   }
   .btn-primary:hover { opacity: 0.85; }
-
   .btn-link {
-    font-size: 0.7rem; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--subtle);
-    text-decoration: none; transition: color 0.25s;
-    display: flex; align-items: center; gap: 8px;
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--subtle); text-decoration: none;
+    display: flex; align-items: center; gap: 8px; transition: color 0.25s;
   }
   .btn-link:hover { color: var(--light); }
-  .btn-link span { font-size: 0.85rem; transition: transform 0.25s; }
+  .btn-link span { transition: transform 0.25s; }
   .btn-link:hover span { transform: translateX(4px); }
 
-  /* Hero direito — foto + badge */
   .hero-right {
     position: relative; z-index: 2;
     display: flex; justify-content: flex-end; align-items: flex-end;
-    padding-bottom: 0;
   }
-
-  .hero-photo-wrap {
-    position: relative;
-    width: 340px;
-  }
-  /* Borda decorativa deslocada */
+  .hero-photo-wrap { position: relative; width: 340px; }
   .hero-photo-wrap::before {
-    content: '';
-    position: absolute;
-    top: 16px; left: -16px;
-    width: 100%; height: 100%;
-    border: 1px solid var(--border);
-    z-index: 0;
+    content: ''; position: absolute; top: 16px; left: -16px;
+    width: 100%; height: 100%; border: 1px solid var(--border); z-index: 0;
   }
   .hero-photo {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background: var(--mid);
-    position: relative; z-index: 1;
+    width: 100%; aspect-ratio: 3/4; background: var(--mid);
+    position: relative; z-index: 1; overflow: hidden;
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
   }
-  /* Placeholder para a foto — substitua por <img src="sua-foto.jpg"> */
   .hero-photo-placeholder {
     width: 100%; height: 100%;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 12px;
     background: linear-gradient(160deg, #1a1a1a 0%, #222 100%);
   }
-  .hero-photo-placeholder svg {
-    opacity: 0.15; width: 64px; height: 64px;
-  }
+  .hero-photo-placeholder svg { opacity: 0.15; width: 64px; height: 64px; }
   .hero-photo-placeholder span {
-    font-size: 0.6rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--muted);
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
   }
-
-  /* Badge flutuante */
   .hero-badge {
-    position: absolute;
-    bottom: -20px; left: -32px; z-index: 2;
-    background: var(--dark);
-    border: 1px solid var(--border);
-    padding: 16px 20px;
-    width: 180px;
+    position: absolute; bottom: -20px; left: -32px; z-index: 2;
+    background: var(--dark); border: 1px solid var(--border); padding: 16px 20px; width: 200px;
   }
   .hero-badge-num {
-    font-family: var(--font-h);
-    font-size: 2.2rem; font-weight: 300;
-    color: var(--white); line-height: 1;
-    display: block; margin-bottom: 4px;
+    font-family: var(--font-h); font-size: 2.2rem; font-weight: 300;
+    color: var(--white); line-height: 1; display: block; margin-bottom: 4px;
   }
   .hero-badge-label {
-    font-size: 0.6rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--subtle);
-    display: block;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--subtle); display: block;
   }
-
-  /* Scroll indicator */
+  .hero-badge-desc {
+    display: block; font-size: 0.58rem; color: var(--muted); margin-top: 6px; line-height: 1.5;
+  }
   .scroll-hint {
-    position: absolute; bottom: 32px; left: 50%;
-    transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    z-index: 2;
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 2;
   }
   .scroll-hint span {
-    font-size: 0.58rem; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--muted);
+    font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
   }
   .scroll-line {
     width: 1px; height: 48px;
     background: linear-gradient(to bottom, var(--border), transparent);
     animation: scrollAnim 1.8s ease-in-out infinite;
   }
-  @keyframes scrollAnim {
-    0%, 100% { opacity: 0.3; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(1.2); }
-  }
+  @keyframes scrollAnim { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
-  /* ── SEÇÃO PADRÃO ── */
-  section { padding: 100px 56px; scroll-margin-top: 80px; }
+  /* SEÇÕES */
+  section { padding: 100px 56px; scroll-margin-top: 72px; }
   .section-header { margin-bottom: 56px; }
   .section-eyebrow {
-    font-size: 0.62rem; letter-spacing: 0.28em;
-    text-transform: uppercase; color: var(--subtle);
-    display: flex; align-items: center; gap: 0;
-    margin-bottom: 16px;
-  }
-  .accent-line {
-    display: inline-block; width: 32px; height: 1px;
-    background: var(--subtle); vertical-align: middle;
-    margin-right: 12px;
+    font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--subtle); display: flex; align-items: center; margin-bottom: 16px;
   }
   h2.section-title {
-    font-family: var(--font-h);
-    font-size: clamp(2.4rem, 4vw, 4rem);
-    font-weight: 300; line-height: 1.05;
-    color: var(--white); letter-spacing: 0.01em;
+    font-family: var(--font-h); font-size: clamp(2.4rem, 4vw, 4rem);
+    font-weight: 300; line-height: 1.05; color: var(--white);
   }
-  h2.section-title em { font-style: italic; color: var(--white); }
+  h2.section-title em { font-style: italic; }
 
-  /* ── SOBRE ── */
+  /* SOBRE */
   .about { background: var(--dark); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 72px; align-items: start;
-  }
-  .about-text p {
-    font-size: 0.95rem; color: var(--subtle);
-    line-height: 1.85; margin-bottom: 20px;
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 72px; align-items: start; }
+  .about-text p { font-size: 0.95rem; color: var(--subtle); line-height: 1.85; margin-bottom: 20px; }
   .about-text p strong { color: var(--light); font-weight: 500; }
-  .about-text p:last-child { margin-bottom: 0; }
-
-  /* Bloco honesto — diferencial real */
   .honest-box {
-    border-left: 2px solid var(--subtle);
-    padding: 24px 28px;
-    background: rgba(255,255,255,0.03);
-    margin-top: 36px;
+    border-left: 2px solid var(--subtle); padding: 24px 28px;
+    background: rgba(255,255,255,0.03); margin-top: 36px;
   }
   .honest-box p {
-    font-family: var(--font-h);
-    font-size: 1.15rem; font-style: italic;
-    color: var(--light); line-height: 1.6;
-    margin: 0 !important;
+    font-family: var(--font-h); font-size: 1.15rem;
+    font-style: italic; color: var(--light); line-height: 1.6;
   }
-
-  /* Valores / diferenciais */
   .values-list { list-style: none; }
   .values-list li {
-    padding: 18px 0;
-    border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 28px 1fr;
-    gap: 16px; align-items: start;
+    padding: 18px 0; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 28px 1fr; gap: 16px; align-items: start;
   }
   .values-list li:first-child { border-top: 1px solid var(--border); }
-  .values-num {
-    font-family: var(--font-h); font-size: 0.85rem;
-    color: var(--muted); padding-top: 2px;
-  }
+  .values-num { font-family: var(--font-h); font-size: 0.85rem; color: var(--muted); padding-top: 2px; }
   .values-content strong {
     display: block; font-size: 0.82rem; font-weight: 500;
-    letter-spacing: 0.06em; color: var(--light);
-    text-transform: uppercase; margin-bottom: 4px;
+    letter-spacing: 0.06em; color: var(--light); text-transform: uppercase; margin-bottom: 4px;
   }
-  .values-content span {
-    font-size: 0.82rem; color: var(--muted); line-height: 1.6;
-  }
+  .values-content span { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
-  /* ── TRABALHOS ── */
+  /* TRABALHOS */
   .works { background: var(--black); }
-  .works-header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 48px;
+  .works-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
+  .tag {
+    font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--subtle); padding: 5px 12px; border: 1px solid var(--border);
   }
-
-  /*
-    GRID DE VÍDEOS — solução desktop para verticais (9:16):
-    Layout em mosaico com colunas de largura controlada.
-    Vídeos verticais nunca excedem ~280px de largura em desktop.
-  */
-  .video-mosaic {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 3px;
-  }
-  .video-mosaic-row2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1.8fr;
-    gap: 3px;
-    margin-top: 3px;
-  }
-
-  .vcard {
-    position: relative; overflow: hidden;
-    background: var(--mid);
-    cursor: pointer;
-    group: '';
-  }
-  .vcard.wide  { aspect-ratio: 16/9; }
+  .video-mosaic { display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3px; }
+  .video-mosaic-row2 { display: grid; grid-template-columns: 1fr 1fr 1.8fr; gap: 3px; margin-top: 3px; }
+  .vcard { position: relative; overflow: hidden; background: var(--mid); cursor: pointer; }
+  .vcard.wide { aspect-ratio: 16/9; }
   .vcard.tall  { aspect-ratio: 9/16; }
-
-  .vcard-inner {
-    position: absolute; inset: 0;
-    transition: transform 0.7s cubic-bezier(0.22,0.1,0.25,1);
-  }
+  .vcard-inner { position: absolute; inset: 0; transition: transform 0.7s cubic-bezier(0.22,0.1,0.25,1); }
   .vcard:hover .vcard-inner { transform: scale(1.05); }
-
-  /* Placeholder visual do vídeo */
-  .vcard-bg {
-    position: absolute; inset: 0;
-  }
-  .bg-a { background: linear-gradient(135deg, #181818 0%, #252525 100%); }
-  .bg-b { background: linear-gradient(160deg, #141414 0%, #1f1f1f 100%); }
-  .bg-c { background: linear-gradient(110deg, #1c1c1c 0%, #272727 100%); }
-  .bg-d { background: linear-gradient(200deg, #161616 0%, #212121 100%); }
-
+  .vcard-bg { position: absolute; inset: 0; }
+  .bg-a { background: linear-gradient(135deg,#181818,#252525); }
+  .bg-b { background: linear-gradient(160deg,#141414,#1f1f1f); }
+  .bg-c { background: linear-gradient(110deg,#1c1c1c,#272727); }
+  .bg-d { background: linear-gradient(200deg,#161616,#212121); }
   .vcard-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
-    z-index: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%); z-index: 1;
   }
-
-  /* ícone de play */
   .vcard-play {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%,-50%) scale(0.9);
     width: 44px; height: 44px;
-    border: 1px solid rgba(240,237,232,0.25);
-    border-radius: 50%;
+    border: 1px solid rgba(240,237,232,0.25); border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    color: rgba(240,237,232,0.6);
-    font-size: 0.85rem;
-    z-index: 2;
-    backdrop-filter: blur(4px);
+    color: rgba(240,237,232,0.6); z-index: 2;
     background: rgba(255,255,255,0.04);
-    opacity: 0;
-    transition: all 0.35s ease;
+    opacity: 0; transition: all 0.35s ease;
   }
-  .vcard:hover .vcard-play {
-    opacity: 1;
-    transform: translate(-50%,-50%) scale(1);
-  }
-
+  .vcard:hover .vcard-play { opacity: 1; transform: translate(-50%,-50%) scale(1); }
   .vcard-info {
     position: absolute; bottom: 0; left: 0; right: 0;
     padding: 16px 18px; z-index: 2;
-    transform: translateY(6px); opacity: 0;
-    transition: all 0.35s ease;
+    transform: translateY(6px); opacity: 0; transition: all 0.35s ease;
   }
   .vcard:hover .vcard-info { transform: translateY(0); opacity: 1; }
-
   .vcard-client {
-    font-size: 0.58rem; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--subtle);
-    display: block; margin-bottom: 3px;
+    font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--subtle); display: block; margin-bottom: 3px;
   }
-  .vcard-title {
-    font-family: var(--font-h); font-size: 1rem;
-    font-weight: 400; color: var(--white);
-  }
-
-  /* Tag de tipo */
+  .vcard-title { font-family: var(--font-h); font-size: 1rem; color: var(--white); }
   .vcard-tag {
     position: absolute; top: 12px; left: 12px; z-index: 3;
-    font-size: 0.56rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--subtle);
-    background: rgba(12,12,12,0.75);
-    padding: 4px 9px;
-    backdrop-filter: blur(4px);
+    font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--subtle); background: rgba(12,12,12,0.75); padding: 4px 9px;
   }
+  .portfolio-note {
+    margin-top: 32px; padding: 20px 24px; border: 1px solid var(--border);
+    display: flex; gap: 12px; align-items: flex-start; max-width: 520px;
+  }
+  .portfolio-note-icon { color: var(--subtle); flex-shrink: 0; margin-top: 2px; }
+  .portfolio-note p { font-size: 0.78rem; color: var(--muted); line-height: 1.65; }
+  .portfolio-note p strong { color: var(--light); font-weight: 500; }
 
-  /* ── PROCESSO ── */
+  /* PROCESSO */
   .process { background: var(--dark); }
   .process-steps {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border);
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1px; background: var(--border); border: 1px solid var(--border);
   }
-  .step {
-    background: var(--dark);
-    padding: 40px 32px;
-    transition: background 0.3s;
-    position: relative; overflow: hidden;
-  }
+  .step { background: var(--dark); padding: 40px 32px; transition: background 0.3s; position: relative; }
   .step::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 2px; background: var(--white);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s ease;
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--white); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.4s ease;
   }
   .step:hover { background: var(--mid); }
   .step:hover::after { transform: scaleX(1); }
   .step-num {
-    font-family: var(--font-h);
-    font-size: 3rem; font-weight: 300;
-    color: var(--border); line-height: 1;
-    margin-bottom: 20px; display: block;
+    font-family: var(--font-h); font-size: 3rem; font-weight: 300;
+    color: var(--border); line-height: 1; margin-bottom: 20px; display: block;
     transition: color 0.3s;
   }
   .step:hover .step-num { color: var(--muted); }
   .step-title {
-    font-size: 0.78rem; font-weight: 500;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--light); margin-bottom: 10px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--light); margin-bottom: 10px;
   }
-  .step-desc {
-    font-size: 0.8rem; color: var(--muted); line-height: 1.65;
-  }
+  .step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
 
-  /* ── EQUIPAMENTOS ── */
-  .equipment { background: var(--black); }
-  .equip-note {
-    display: flex; align-items: flex-start; gap: 12px;
-    background: rgba(184,169,138,0.05);
-    border: 1px solid rgba(184,169,138,0.15);
-    padding: 18px 22px; margin-bottom: 40px;
-    max-width: 560px;
-  }
-  .equip-note-icon { color: var(--accent); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
-  .equip-note p { font-size: 0.8rem; color: var(--subtle); line-height: 1.6; }
-  .equip-note p strong { color: var(--light); font-weight: 500; }
-
-  .equip-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .equip-cat {
-    background: var(--black);
-    padding: 36px 40px;
-  }
-  .equip-cat-title {
-    font-size: 0.62rem; letter-spacing: 0.28em;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .equip-cat-title::after {
-    content: ''; flex: 1; height: 1px; background: var(--border);
-  }
-  .equip-list { list-style: none; }
-  .equip-list li {
-    padding: 11px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.84rem; color: var(--subtle);
-    display: flex; justify-content: space-between; align-items: center;
-    transition: color 0.2s;
-  }
-  .equip-list li:last-child { border-bottom: none; }
-  .equip-list li:hover { color: var(--light); }
-
-  /* ── CTA / CONTATO ── */
-  .contact {
-    background: var(--dark);
-    text-align: center;
-    position: relative; overflow: hidden;
-  }
+  /* CONTATO */
+  .contact { background: var(--dark); text-align: center; position: relative; overflow: hidden; }
   .contact::before {
-    content: attr(data-text);
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-h);
-    font-size: clamp(8rem, 18vw, 20rem);
-    font-weight: 300;
-    color: rgba(255,255,255,0.025);
-    white-space: nowrap; pointer-events: none;
-    user-select: none; line-height: 1;
+    content: 'CONTATO'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: var(--font-h); font-size: clamp(8rem,18vw,20rem); font-weight: 300;
+    color: rgba(255,255,255,0.025); white-space: nowrap; pointer-events: none; line-height: 1;
   }
   .contact .section-eyebrow { justify-content: center; }
   .contact h2.section-title { margin-bottom: 20px; }
   .contact-sub {
-    font-size: 0.9rem; color: var(--muted);
-    max-width: 400px; margin: 0 auto 40px;
-    line-height: 1.75;
+    font-size: 0.9rem; color: var(--muted); max-width: 400px;
+    margin: 0 auto 40px; line-height: 1.75;
   }
-  .contact-actions {
-    display: flex; align-items: center; justify-content: center; gap: 20px;
-    flex-wrap: wrap;
-  }
+  .contact-actions { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
   .btn-outline {
-    border: 1px solid var(--border);
-    color: var(--subtle);
-    padding: 12px 28px;
-    font-family: var(--font-b);
-    font-size: 0.7rem; letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.25s;
+    border: 1px solid var(--border); color: var(--subtle); padding: 12px 28px;
+    font-family: var(--font-b); font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; text-decoration: none; transition: all 0.25s;
   }
-  .btn-outline:hover {
-    border-color: var(--subtle); color: var(--light);
-  }
+  .btn-outline:hover { border-color: var(--subtle); color: var(--light); }
 
-  /* ── FOOTER ── */
+  /* FOOTER */
   footer {
-    background: var(--black);
-    border-top: 1px solid var(--border);
-    padding: 40px 56px;
-    display: flex; justify-content: space-between; align-items: center;
+    background: var(--black); border-top: 1px solid var(--border);
+    padding: 40px 56px; display: flex; justify-content: space-between; align-items: center;
   }
-  .footer-name {
-    font-family: var(--font-h); font-size: 1.1rem;
-    font-weight: 300; color: var(--white); letter-spacing: 0.06em;
-  }
-  .footer-socials {
-    display: flex; gap: 28px; list-style: none;
-  }
+  .footer-name { font-family: var(--font-h); font-size: 1.1rem; font-weight: 300; color: var(--white); }
+  .footer-socials { display: flex; gap: 28px; list-style: none; }
   .footer-socials a {
-    font-size: 0.62rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--muted);
-    text-decoration: none; transition: color 0.25s;
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.25s;
   }
   .footer-socials a:hover { color: var(--light); }
-  .footer-copy {
-    font-size: 0.6rem; letter-spacing: 0.1em; color: var(--border);
-  }
+  .footer-copy { font-size: 0.6rem; color: var(--border); }
 
-  /* ── REVEAL ANIMATION ── */
-  .reveal {
-    opacity: 0; transform: translateY(28px);
-    transition: opacity 0.75s ease, transform 0.75s ease;
-  }
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.in { opacity: 1; transform: translateY(0); }
-  .reveal-d1 { transition-delay: 0.1s; }
-  .reveal-d2 { transition-delay: 0.2s; }
-  .reveal-d3 { transition-delay: 0.3s; }
-  .reveal-d4 { transition-delay: 0.4s; }
 
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVO */
   @media (max-width: 900px) {
-    nav { padding: 20px 24px; }
+    nav { padding: 0 20px; height: 64px; }
     .nav-links li:not(:last-child) { display: none; }
-    section { padding: 72px 24px; }
-    .hero { grid-template-columns: 1fr; padding: 140px 24px 72px; gap: 48px; }
-    .hero-right { justify-content: flex-start; }
-    .hero-photo-wrap { width: 260px; }
+    section { scroll-margin-top: 64px; }
+
+    .hero {
+      grid-template-columns: 1fr; align-items: start;
+      padding: 96px 24px 80px; gap: 40px; min-height: auto;
+    }
+    h1.hero-title { font-size: clamp(3rem, 11vw, 5rem); }
+    .hero-right { justify-content: flex-start; padding-bottom: 40px; }
+    .hero-photo-wrap { width: min(280px, 80vw); }
+    .hero-photo-wrap::before { top: 10px; left: -10px; }
+    .hero-badge { bottom: -16px; left: -8px; width: 190px; padding: 12px 16px; }
+    .scroll-hint { display: none; }
+
+    section { padding: 64px 24px; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .video-mosaic, .video-mosaic-row2 { grid-template-columns: 1fr 1fr; }
-    .process-steps { grid-template-columns: repeat(2, 1fr); }
-    .equip-grid { grid-template-columns: 1fr; }
+    .video-mosaic, .video-mosaic-row2 { grid-template-columns: 1fr; }
+    .vcard.tall { aspect-ratio: 16/9; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
     footer { flex-direction: column; gap: 20px; text-align: center; }
     .footer-socials { flex-wrap: wrap; justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .works-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .process-steps { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
 <nav>
-  <a href="#" class="nav-name">Isabela</a>
+  <a href="#" class="nav-name">Seu Nome</a>
   <ul class="nav-links">
     <li><a href="#trabalhos">Trabalhos</a></li>
     <li><a href="#processo">Processo</a></li>
@@ -624,32 +380,22 @@
   </ul>
 </nav>
 
-<!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">
-      <span class="accent-line"></span>Storymaker de Eventos · São Paulo
-    </div>
-    <h1 class="hero-title">
-      Cada evento<br>tem uma <em>história</em><br>para contar.
-    </h1>
+    <div class="hero-eyebrow"><span class="accent-line"></span>Storymaker de Eventos · São Paulo</div>
+    <h1 class="hero-title">Cada evento<br>tem uma <em>história</em><br>para contar.</h1>
     <p class="hero-sub">
-      Capturo momentos reais com olhar cinematográfico.
-      <strong>Casamentos, debutantes, formaturas, corporativos e lançamentos</strong> —
-      transformo o que acontece em vídeo que as pessoas querem assistir de novo.
+      Momentos passam. Alguns merecem permanecer.<br><br>
+      Registro eventos com presença e sensibilidade, transformando o que é vivido em algo que pode ser revivido.
     </p>
     <div class="hero-actions">
-      <a href="#trabalhos" class="btn-primary">Ver meus trabalhos</a>
-      <a href="#contato" class="btn-link">Quero um orçamento <span>→</span></a>
+      <a href="#trabalhos" class="btn-primary">Ver trabalhos</a>
+      <a href="#contato" class="btn-link">Solicitar orçamento <span>→</span></a>
     </div>
   </div>
 
   <div class="hero-right">
     <div class="hero-photo-wrap">
-      <!--
-        SUBSTITUA este bloco pela sua foto:
-        <img src="sua-foto.jpg" alt="Seu Nome — Storymaker" style="width:100%;height:100%;object-fit:cover;display:block;">
-      -->
       <div class="hero-photo">
         <div class="hero-photo-placeholder">
           <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -661,7 +407,8 @@
       </div>
       <div class="hero-badge">
         <span class="hero-badge-num">+20</span>
-        <span class="hero-badge-label">Eventos filmados</span>
+        <span class="hero-badge-label">Eventos documentados</span>
+        <span class="hero-badge-desc">Experiência prática em diferentes formatos e públicos.</span>
       </div>
     </div>
   </div>
@@ -672,64 +419,28 @@
   </div>
 </section>
 
-<!-- ═══ SOBRE ═══ -->
 <section class="about reveal" id="sobre">
   <div class="section-header">
-    <div class="section-eyebrow"><span class="accent-line"></span>Sobre mim</div>
-    <h2 class="section-title">Presença. Técnica.<br><em>Resultado.</em></h2>
+    <div class="section-eyebrow"><span class="accent-line"></span>Diferenciais</div>
+    <h2 class="section-title">Presença. Sensibilidade.<br><em>Entrega.</em></h2>
   </div>
   <div class="about-grid">
     <div class="about-text">
-      <p>
-        Sou storymaker especializado em eventos — meu trabalho é garantir que
-        <strong>nenhum momento importante seja perdido</strong>, e que o vídeo final
-        pareça exatamente como aquele dia se sentiu.
-      </p>
-      <p>
-        Estou construindo meu portfólio com foco e intenção.
-        Cada projeto que entrego é tratado com o mesmo cuidado que um profissional
-        sênior teria — porque <strong>o cliente não merece menos</strong> pelo fato
-        de eu estar no início da trajetória.
-      </p>
+      <p>Mais do que captar imagens, meu trabalho é <strong>perceber o que realmente importa</strong> em cada evento: os detalhes, os olhares, as pausas, aquilo que muitas vezes passa despercebido no momento, mas que depois ganha valor.</p>
+      <p>Estou presente com atenção e intenção, garantindo que cada lembrança importante seja guardada com <strong>cuidado, estética e verdade.</strong></p>
       <div class="honest-box">
-        <p>"Prefiro ser honesto sobre onde estou e entregar além do esperado, do que prometer o impossível e decepcionar."</p>
+        <p>"Porque no final, não é só sobre o que aconteceu — é sobre como aquilo foi sentido."</p>
       </div>
     </div>
-
     <ul class="values-list">
-      <li>
-        <span class="values-num">01</span>
-        <div class="values-content">
-          <strong>Pontualidade no set</strong>
-          <span>Chego antes. Conheço o espaço. Me preparo para o inesperado.</span>
-        </div>
-      </li>
-      <li>
-        <span class="values-num">02</span>
-        <div class="values-content">
-          <strong>Entrega no prazo</strong>
-          <span>Combinado é combinado. Prazos são compromissos, não sugestões.</span>
-        </div>
-      </li>
-      <li>
-        <span class="values-num">03</span>
-        <div class="values-content">
-          <strong>Comunicação clara</strong>
-          <span>Você sabe o que vai receber antes, durante e depois do evento.</span>
-        </div>
-      </li>
-      <li>
-        <span class="values-num">04</span>
-        <div class="values-content">
-          <strong>Olhar cinematográfico</strong>
-          <span>Não é só registro — é narrativa. Cada corte tem intenção.</span>
-        </div>
-      </li>
+      <li><span class="values-num">01</span><div class="values-content"><strong>Presença estratégica</strong><span>Antecipação, leitura de ambiente e posicionamento preciso.</span></div></li>
+      <li><span class="values-num">02</span><div class="values-content"><strong>Compromisso com prazo</strong><span>Entrega alinhada, sem atrasos.</span></div></li>
+      <li><span class="values-num">03</span><div class="values-content"><strong>Comunicação objetiva</strong><span>Clareza em todas as etapas.</span></div></li>
+      <li><span class="values-num">04</span><div class="values-content"><strong>Estética e narrativa</strong><span>Cada registro tem intenção.</span></div></li>
     </ul>
   </div>
 </section>
 
-<!-- ═══ TRABALHOS ═══ -->
 <section class="works reveal" id="trabalhos">
   <div class="works-header">
     <div>
@@ -739,148 +450,65 @@
     <div class="tag">Clique para assistir</div>
   </div>
 
-  <!--
-    COMO ADICIONAR SEUS VÍDEOS:
-    Substitua cada .vcard pelo link real do YouTube/Vimeo usando iframe, ou
-    use a thumbnail do vídeo como background-image no .vcard-bg.
-
-    Estrutura de layout: 1 wide (16:9) + 2 tall (9:16) por linha.
-    Os vídeos verticais ficam em colunas estreitas — perfeito para mobile content em desktop.
-  -->
   <div class="video-mosaic">
     <div class="vcard wide">
       <div class="vcard-tag">Corporativo</div>
-      <div class="vcard-inner">
-        <div class="vcard-bg bg-a"></div>
-        <div class="vcard-overlay"></div>
-        <div class="vcard-play">▶</div>
-        <div class="vcard-info">
-          <span class="vcard-client">Nome do evento</span>
-          <span class="vcard-title">Confraternização Anual</span>
-        </div>
-      </div>
+      <div class="vcard-inner"><div class="vcard-bg bg-a"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Confraternização Anual</span></div></div>
     </div>
     <div class="vcard tall">
       <div class="vcard-tag">Reel</div>
-      <div class="vcard-inner">
-        <div class="vcard-bg bg-b"></div>
-        <div class="vcard-overlay"></div>
-        <div class="vcard-play">▶</div>
-        <div class="vcard-info">
-          <span class="vcard-client">Nome do evento</span>
-          <span class="vcard-title">Highlight Reel</span>
-        </div>
-      </div>
+      <div class="vcard-inner"><div class="vcard-bg bg-b"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Highlight Reel</span></div></div>
     </div>
     <div class="vcard tall">
       <div class="vcard-tag">Formatura</div>
-      <div class="vcard-inner">
-        <div class="vcard-bg bg-c"></div>
-        <div class="vcard-overlay"></div>
-        <div class="vcard-play">▶</div>
-        <div class="vcard-info">
-          <span class="vcard-client">Nome do evento</span>
-          <span class="vcard-title">Cerimônia de Colação</span>
-        </div>
-      </div>
+      <div class="vcard-inner"><div class="vcard-bg bg-c"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Cerimônia de Colação</span></div></div>
     </div>
   </div>
 
   <div class="video-mosaic-row2">
     <div class="vcard tall">
       <div class="vcard-tag">Casamento</div>
-      <div class="vcard-inner">
-        <div class="vcard-bg bg-d"></div>
-        <div class="vcard-overlay"></div>
-        <div class="vcard-play">▶</div>
-        <div class="vcard-info">
-          <span class="vcard-client">Nome do evento</span>
-          <span class="vcard-title">Filme de Casamento</span>
-        </div>
-      </div>
+      <div class="vcard-inner"><div class="vcard-bg bg-d"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Filme de Casamento</span></div></div>
     </div>
     <div class="vcard tall">
       <div class="vcard-tag">Reel</div>
-      <div class="vcard-inner">
-        <div class="vcard-bg bg-a"></div>
-        <div class="vcard-overlay"></div>
-        <div class="vcard-play">▶</div>
-        <div class="vcard-info">
-          <span class="vcard-client">Nome do evento</span>
-          <span class="vcard-title">Bastidores de Show</span>
-        </div>
-      </div>
+      <div class="vcard-inner"><div class="vcard-bg bg-a"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Bastidores de Show</span></div></div>
     </div>
     <div class="vcard wide">
       <div class="vcard-tag">Lançamento</div>
-      <div class="vcard-inner">
-        <div class="vcard-bg bg-b"></div>
-        <div class="vcard-overlay"></div>
-        <div class="vcard-play">▶</div>
-        <div class="vcard-info">
-          <span class="vcard-client">Nome do evento</span>
-          <span class="vcard-title">Lançamento de Produto</span>
-        </div>
-      </div>
+      <div class="vcard-inner"><div class="vcard-bg bg-b"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Lançamento de Produto</span></div></div>
     </div>
   </div>
 
-  <!-- Aviso honesto sobre portfólio em construção -->
-  <div style="margin-top:32px; padding:20px 24px; border:1px solid var(--border); display:flex; gap:12px; align-items:flex-start; max-width:520px;">
-    <span style="color:var(--subtle); font-size:0.9rem; flex-shrink:0; margin-top:1px;">✦</span>
-    <p style="font-size:0.78rem; color:var(--muted); line-height:1.65;">
-      Portfólio em construção. Tenho <strong style="color:var(--light); font-weight:500;">vídeos prontos para compartilhar por WhatsApp</strong> — me chame e envio exemplos do tipo de evento que você está planejando.
-    </p>
+  <div class="portfolio-note">
+    <span class="portfolio-note-icon">✦</span>
+    <p>Portfólio em construção. Tenho <strong>vídeos prontos para compartilhar por WhatsApp</strong> — me chame e envio exemplos do tipo de evento que você está planejando.</p>
   </div>
 </section>
 
-<!-- ═══ PROCESSO ═══ -->
 <section class="process reveal" id="processo">
   <div class="section-header">
     <div class="section-eyebrow"><span class="accent-line"></span>Como funciona</div>
     <h2 class="section-title">Do contato<br>à <em>entrega</em></h2>
   </div>
   <div class="process-steps">
-    <div class="step">
-      <span class="step-num">01</span>
-      <div class="step-title">Conversa inicial</div>
-      <p class="step-desc">Você me conta tudo sobre o evento: data, local, tamanho, o que é mais importante registrar. Sem formulário longo.</p>
-    </div>
-    <div class="step">
-      <span class="step-num">02</span>
-      <div class="step-title">Proposta clara</div>
-      <p class="step-desc">Envio uma proposta objetiva: o que está incluso, prazo de entrega e investimento. Sem surpresas depois.</p>
-    </div>
-    <div class="step">
-      <span class="step-num">03</span>
-      <div class="step-title">No evento</div>
-      <p class="step-desc">Chego cedo, conheço o espaço, trabalho discreto para não atrapalhar — e não perco nenhum momento importante.</p>
-    </div>
-    <div class="step">
-      <span class="step-num">04</span>
-      <div class="step-title">Entrega final</div>
-      <p class="step-desc">Edição cuidadosa com trilha, cor e cortes precisos. Entrego no prazo combinado, pronto para publicar.</p>
-    </div>
+    <div class="step"><span class="step-num">01</span><div class="step-title">Conversa inicial</div><p class="step-desc">Você me conta tudo sobre o evento: data, local, tamanho, o que é mais importante registrar. Sem formulário longo.</p></div>
+    <div class="step"><span class="step-num">02</span><div class="step-title">Proposta clara</div><p class="step-desc">Envio uma proposta objetiva: o que está incluso, prazo de entrega e investimento. Sem surpresas depois.</p></div>
+    <div class="step"><span class="step-num">03</span><div class="step-title">No evento</div><p class="step-desc">Chego cedo, conheço o espaço, trabalho discreto para não atrapalhar — e não perco nenhum momento importante.</p></div>
+    <div class="step"><span class="step-num">04</span><div class="step-title">Entrega final</div><p class="step-desc">Edição cuidadosa com trilha, cor e cortes precisos. Entrego no prazo combinado, pronto para publicar.</p></div>
   </div>
 </section>
 
-<!-- ═══ CTA ═══ -->
-<section class="contact reveal" id="contato" data-text="CONTATO">
+<section class="contact reveal" id="contato">
   <div class="section-eyebrow"><span class="accent-line"></span>Vamos conversar</div>
-  <h2 class="section-title" style="margin-bottom:20px;">
-    Seu evento<br>merece ser <em>lembrado.</em>
-  </h2>
-  <p class="contact-sub">
-    Me conta o que você está planejando. Respondo rápido, sem enrolação —
-    e sem compromisso para a conversa inicial.
-  </p>
+  <h2 class="section-title" style="margin-bottom:20px;">Seu evento<br>merece ser <em>lembrado.</em></h2>
+  <p class="contact-sub">Alguns momentos passam rápido, mas podem continuar vivos através de um bom registro. Me chama e eu te explico como isso pode funcionar no seu evento.</p>
   <div class="contact-actions">
-    <a href="https://wa.me/55SEUNUMERO" class="btn-primary" target="_blank">Falar no WhatsApp</a>
+    <a href="https://wa.me/55SEUNUMERO" class="btn-primary" target="_blank">Solicitar cobertura</a>
     <a href="mailto:seuemail@gmail.com" class="btn-outline">Enviar e-mail</a>
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-name">Seu Nome</div>
   <ul class="footer-socials">
@@ -888,11 +516,12 @@
     <li><a href="#">YouTube</a></li>
     <li><a href="#">TikTok</a></li>
   </ul>
-  <div class="footer-copy">© 2025 · Storymaker de Eventos</div>
+  <div class="footer-copy">© <span id="ano"></span> · Storymaker de Eventos</div>
 </footer>
 
-<script>
-  // ── Scroll Reveal
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.getElementById('ano').textContent = new Date().getFullYear();
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -900,26 +529,29 @@
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ── Hero entrada suave
   window.addEventListener('load', () => {
     const hl = document.querySelector('.hero-left');
     const hr = document.querySelector('.hero-right');
-    if (hl) {
-      hl.style.cssText = 'opacity:0;transform:translateY(32px);transition:opacity 0.9s ease 0.2s,transform 0.9s ease 0.2s';
-      hr.style.cssText = 'opacity:0;transform:translateY(24px);transition:opacity 0.9s ease 0.45s,transform 0.9s ease 0.45s';
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        hl.style.opacity = '1'; hl.style.transform = 'translateY(0)';
-        hr.style.opacity = '1'; hr.style.transform = 'translateY(0)';
-      }));
-    }
+    if (!hl) return;
+    
+    [hl, hr].forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity 0.9s ease ' + (i * 0.25 + 0.15) + 's, transform 0.9s ease ' + (i * 0.25 + 0.15) + 's';
+    });
+    
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        [hl, hr].forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      });
+    });
   });
-
-  // ── Atualiza ano no footer automaticamente
-  const copyEl = document.querySelector('.footer-copy');
-  if (copyEl) copyEl.textContent = copyEl.textContent.replace('2025', new Date().getFullYear());
 </script>
 </body>
 </html>
