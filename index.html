@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seu Nome — Storymaker de Eventos</title>
+<title>Isabela — Storymaker de Eventos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -23,25 +23,18 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
   body {
-    background: var(--black);
-    color: var(--light);
-    font-family: var(--font-b);
-    font-weight: 400;
-    line-height: 1.7;
-    overflow-x: hidden;
+    background: var(--black); color: var(--light);
+    font-family: var(--font-b); font-weight: 400;
+    line-height: 1.7; overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
-
   body::after {
-    content: '';
-    position: fixed; inset: 0; z-index: 9000;
+    content: ''; position: fixed; inset: 0; z-index: 9000;
     pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
     opacity: 0.6;
   }
-
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
 
@@ -50,11 +43,12 @@
     background: rgba(255,255,255,0.2); vertical-align: middle; margin-right: 16px;
   }
 
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 500;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 6vw; height: 80px;
-    background: rgba(10,10,10,0.75);
+    background: rgba(10,10,10,0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
@@ -75,15 +69,15 @@
   }
   .nav-links li a:not(.nav-cta):hover { color: var(--white); }
   .nav-links li a:not(.nav-cta):hover::after { transform: scaleX(1); transform-origin: left; }
-
   .nav-cta {
     background: transparent !important; color: var(--white) !important;
     padding: 10px 24px; font-weight: 500 !important;
     letter-spacing: 0.15em !important; border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.4s var(--ease) !important;
+    transition: all 0.4s var(--ease) !important; text-decoration: none;
   }
-  .nav-cta:hover { background: var(--white) !important; color: var(--black) !important; border-color: var(--white); }
+  .nav-cta:hover { background: var(--white) !important; color: var(--black) !important; }
 
+  /* HERO */
   .hero {
     min-height: 100vh;
     display: grid; grid-template-columns: 1.1fr 0.9fr;
@@ -158,10 +152,9 @@
   .hero-photo-placeholder span {
     font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
   }
-  
   .hero-badge {
     position: absolute; bottom: -25px; left: -40px; z-index: 2;
-    background: rgba(22,22,22,0.6); backdrop-filter: blur(10px);
+    background: rgba(22,22,22,0.9); backdrop-filter: blur(10px);
     border: 1px solid var(--border); padding: 20px 24px; width: 220px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   }
@@ -176,7 +169,6 @@
   .hero-badge-desc {
     display: block; font-size: 0.6rem; color: var(--subtle); margin-top: 8px; line-height: 1.6;
   }
-
   .scroll-hint {
     position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 12px; z-index: 2;
@@ -194,6 +186,7 @@
   }
   @keyframes scrollAnim { 0%{transform:translateY(-100%)} 50%{transform:translateY(100%)} 100%{transform:translateY(200%)} }
 
+  /* SEÇÕES */
   section { padding: 120px 6vw; scroll-margin-top: 80px; }
   .section-header { margin-bottom: 72px; max-width: 600px; }
   .section-eyebrow {
@@ -206,6 +199,7 @@
   }
   h2.section-title em { font-style: italic; font-weight: 300; }
 
+  /* SOBRE */
   .about { background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
   .about-text p { font-size: 1.05rem; color: var(--subtle); line-height: 1.9; margin-bottom: 24px; }
@@ -222,10 +216,10 @@
   .values-list li {
     padding: 24px 0; border-bottom: 1px solid var(--border);
     display: grid; grid-template-columns: 32px 1fr; gap: 20px; align-items: start;
-    transition: background 0.4s var(--ease);
+    transition: all 0.4s var(--ease);
   }
   .values-list li:first-child { border-top: 1px solid var(--border); }
-  .values-list li:hover { background: rgba(255,255,255,0.01); padding-left: 10px; margin-left: -10px; }
+  .values-list li:hover { padding-left: 10px; }
   .values-num { font-family: var(--font-h); font-size: 1rem; color: var(--muted); padding-top: 2px; }
   .values-content strong {
     display: block; font-size: 0.85rem; font-weight: 500;
@@ -233,28 +227,42 @@
   }
   .values-content span { font-size: 0.9rem; color: var(--subtle); line-height: 1.7; }
 
-  .works-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
-  .tag {
-    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--muted); padding: 6px 16px; border: 1px solid var(--border);
+  /* TRABALHOS */
+  .works-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; }
+
+  /* FILTROS */
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 48px; }
+  .filter-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--muted); padding: 9px 22px;
+    font-family: var(--font-b); font-size: 0.68rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.35s var(--ease);
   }
-  .video-mosaic, .video-mosaic-row2 { display: grid; gap: 4px; }
-  .video-mosaic { grid-template-columns: 1.8fr 1fr 1fr; }
-  .video-mosaic-row2 { grid-template-columns: 1fr 1fr 1.8fr; margin-top: 4px; }
-  
+  .filter-btn:hover { border-color: rgba(255,255,255,0.25); color: var(--subtle); }
+  .filter-btn.active { background: var(--white); color: var(--black); border-color: var(--white); }
+
+  /* GALERIA */
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 4px;
+  }
+  .gallery-grid .vcard { aspect-ratio: 16/10; }
+  .gallery-grid .vcard.tall-card { aspect-ratio: 9/16; }
+  .vcard.hidden { display: none; }
+  .vcard.fade-in { animation: fadeCard 0.4s var(--ease) forwards; }
+  @keyframes fadeCard { from{opacity:0;transform:scale(0.97)} to{opacity:1;transform:scale(1)} }
+
   .vcard {
     position: relative; overflow: hidden; background: var(--mid); cursor: pointer;
     transition: all 0.6s var(--ease);
   }
-  .vcard.wide { aspect-ratio: 16/10; }
-  .vcard.tall  { aspect-ratio: 9/16; }
   .vcard-inner { position: absolute; inset: 0; transition: transform 0.8s var(--ease); }
   .vcard:hover .vcard-inner { transform: scale(1.04); }
   .vcard-bg { position: absolute; inset: 0; }
   .bg-a { background: linear-gradient(135deg,#1a1a1a,#2a2a2a); }
   .bg-b { background: linear-gradient(160deg,#161616,#252525); }
   .bg-c { background: linear-gradient(110deg,#1d1d1d,#2d2d2d); }
-  .bg-d { background: linear-gradient(200deg,#181818,#282818); }
+  .bg-d { background: linear-gradient(200deg,#181818,#282828); }
   .vcard-overlay {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%); z-index: 1;
@@ -288,14 +296,7 @@
     padding: 5px 10px; border: 1px solid rgba(255,255,255,0.08);
   }
 
-  .portfolio-note {
-    margin-top: 48px; padding: 24px 28px; border: 1px solid var(--border);
-    display: flex; gap: 16px; align-items: flex-start; max-width: 560px;
-    background: rgba(255,255,255,0.01);
-  }
-  .portfolio-note-icon { color: rgba(255,255,255,0.2); flex-shrink: 0; margin-top: 3px; }
-  .portfolio-note p { font-size: 0.85rem; color: var(--subtle); line-height: 1.7; }
-
+  /* PROCESSO */
   .process { background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .process-steps {
     display: grid; grid-template-columns: repeat(4,1fr);
@@ -313,25 +314,29 @@
   }
   .step-desc { font-size: 0.9rem; color: var(--subtle); line-height: 1.7; }
 
+  /* CONTATO */
   .contact { text-align: center; position: relative; overflow: hidden; padding: 150px 6vw; }
   .contact::before {
     content: 'CONTATO'; position: absolute; top: 50%; left: 50%;
     transform: translate(-50%,-50%);
-    font-family: var(--font-h); font-size: clamp(10rem, 25vw, 25rem); font-weight: 300;
+    font-family: var(--font-h); font-size: clamp(10rem,25vw,25rem); font-weight: 300;
     color: rgba(255,255,255,0.015); white-space: nowrap; pointer-events: none; z-index: 0;
   }
+  .contact .section-eyebrow { justify-content: center; }
+  .contact h2.section-title { margin-bottom: 24px; }
   .contact-sub {
     font-size: 1rem; color: var(--subtle); max-width: 440px;
     margin: 0 auto 56px; line-height: 1.8; position: relative; z-index: 1;
   }
-  .contact-actions { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; position: relative; z-index: 1;}
+  .contact-actions { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; position: relative; z-index: 1; }
   .btn-outline {
     border: 1px solid rgba(255,255,255,0.15); color: var(--subtle); padding: 16px 36px;
     font-family: var(--font-b); font-size: 0.75rem; letter-spacing: 0.2em;
     text-transform: uppercase; text-decoration: none; transition: all 0.4s var(--ease);
   }
-  .btn-outline:hover { border-color: var(--white); color: var(--white); background: rgba(255,255,255,0.03); }
+  .btn-outline:hover { border-color: var(--white); color: var(--white); }
 
+  /* FOOTER */
   footer {
     background: var(--black); border-top: 1px solid var(--border);
     padding: 60px 6vw; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
@@ -345,9 +350,11 @@
   .footer-socials a:hover { color: var(--white); }
   .footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.15); text-align: right; }
 
+  /* REVEAL */
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
   .reveal.in { opacity: 1; transform: translateY(0); }
 
+  /* RESPONSIVE */
   @media (max-width: 900px) {
     .nav-links li:not(:last-child) { display: none; }
     .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
@@ -357,23 +364,25 @@
     .hero-right { justify-content: center; margin-top: 60px; }
     .hero-badge { left: 50%; transform: translateX(-50%); bottom: -30px; }
     .about-grid { grid-template-columns: 1fr; }
-    .video-mosaic, .video-mosaic-row2 { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid .vcard.tall-card { aspect-ratio: 16/10; }
     .process-steps { grid-template-columns: 1fr 1fr; }
     footer { grid-template-columns: 1fr; gap: 32px; text-align: center; }
     .footer-copy { text-align: center; }
   }
-
   @media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: 1fr; }
     .process-steps { grid-template-columns: 1fr; }
     .hero-actions { flex-direction: column; }
-    .contact-actions { flex-direction: column; max-width: 300px; margin: 0 auto; }
+    .contact-actions { flex-direction: column; max-width: 300px; margin-left: auto; margin-right: auto; }
+    .filter-bar { gap: 6px; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-name">Seu Nome</a>
+  <a href="#" class="nav-name">Isabela</a>
   <ul class="nav-links">
     <li><a href="#trabalhos">Trabalhos</a></li>
     <li><a href="#processo">Processo</a></li>
@@ -383,7 +392,7 @@
 
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow"><span class="accent-line"></span>Storymaker de Eventos · São Paulo</div>
+    <div class="hero-eyebrow"><span class="accent-line"></span>Storymaker de Eventos · São Bernardo do Campo/SP</div>
     <h1 class="hero-title">Cada evento<br>tem uma <em>história</em><br>para contar.</h1>
     <p class="hero-sub">
       Momentos passam. Alguns merecem permanecer.<br><br>
@@ -394,7 +403,6 @@
       <a href="#contato" class="btn-link">Solicitar orçamento <span>→</span></a>
     </div>
   </div>
-
   <div class="hero-right">
     <div class="hero-photo-wrap">
       <div class="hero-photo">
@@ -447,39 +455,52 @@
       <div class="section-eyebrow"><span class="accent-line"></span>Portfólio</div>
       <h2 class="section-title">Trabalhos <em>recentes</em></h2>
     </div>
-    <div class="tag">Clique para assistir</div>
   </div>
-  <div class="video-mosaic">
-    <div class="vcard wide">
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="todos">Todos</button>
+    <button class="filter-btn" data-filter="casamento">Casamento</button>
+    <button class="filter-btn" data-filter="formatura">Formatura</button>
+    <button class="filter-btn" data-filter="corporativo">Corporativo</button>
+    <button class="filter-btn" data-filter="institucional">Institucional</button>
+    <button class="filter-btn" data-filter="reel">Reel</button>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="vcard" data-cat="corporativo">
       <div class="vcard-tag">Corporativo</div>
-      <div class="vcard-inner"><div class="vcard-bg bg-a"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Confraternização Anual</span></div></div>
+      <div class="vcard-inner"><div class="vcard-bg bg-a"></div><div class="vcard-overlay"></div><div class="vcard-play">&#9654;</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Confraternização Anual</span></div></div>
     </div>
-    <div class="vcard tall">
+    <div class="vcard tall-card" data-cat="reel">
       <div class="vcard-tag">Reel</div>
-      <div class="vcard-inner"><div class="vcard-bg bg-b"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Highlight Reel</span></div></div>
+      <div class="vcard-inner"><div class="vcard-bg bg-b"></div><div class="vcard-overlay"></div><div class="vcard-play">&#9654;</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Highlight Reel</span></div></div>
     </div>
-    <div class="vcard tall">
+    <div class="vcard tall-card" data-cat="formatura">
       <div class="vcard-tag">Formatura</div>
-      <div class="vcard-inner"><div class="vcard-bg bg-c"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Cerimônia de Colação</span></div></div>
+      <div class="vcard-inner"><div class="vcard-bg bg-c"></div><div class="vcard-overlay"></div><div class="vcard-play">&#9654;</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Cerimônia de Colação</span></div></div>
     </div>
-  </div>
-  <div class="video-mosaic-row2">
-    <div class="vcard tall">
+    <div class="vcard tall-card" data-cat="casamento">
       <div class="vcard-tag">Casamento</div>
-      <div class="vcard-inner"><div class="vcard-bg bg-d"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Filme de Casamento</span></div></div>
+      <div class="vcard-inner"><div class="vcard-bg bg-d"></div><div class="vcard-overlay"></div><div class="vcard-play">&#9654;</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Filme de Casamento</span></div></div>
     </div>
-    <div class="vcard tall">
+    <div class="vcard" data-cat="institucional">
+      <div class="vcard-tag">Institucional</div>
+      <div class="vcard-inner"><div class="vcard-bg bg-a"></div><div class="vcard-overlay"></div><div class="vcard-play">&#9654;</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Vídeo Institucional</span></div></div>
+    </div>
+    <div class="vcard" data-cat="corporativo">
+      <div class="vcard-tag">Corporativo</div>
+      <div class="vcard-inner"><div class="vcard-bg bg-b"></div><div class="vcard-overlay"></div><div class="vcard-play">&#9654;</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Lançamento de Produto</span></div></div>
+    </div>
+    <div class="vcard tall-card" data-cat="casamento">
+      <div class="vcard-tag">Casamento</div>
+      <div class="vcard-inner"><div class="vcard-bg bg-c"></div><div class="vcard-overlay"></div><div class="vcard-play">&#9654;</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Cerimônia e Festa</span></div></div>
+    </div>
+    <div class="vcard" data-cat="reel">
       <div class="vcard-tag">Reel</div>
-      <div class="vcard-inner"><div class="vcard-bg bg-a"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Bastidores de Show</span></div></div>
+      <div class="vcard-inner"><div class="vcard-bg bg-d"></div><div class="vcard-overlay"></div><div class="vcard-play">&#9654;</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Bastidores de Show</span></div></div>
     </div>
-    <div class="vcard wide">
-      <div class="vcard-tag">Lançamento</div>
-      <div class="vcard-inner"><div class="vcard-bg bg-b"></div><div class="vcard-overlay"></div><div class="vcard-play">▶</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Lançamento de Produto</span></div></div>
+    <div class="vcard" data-cat="formatura">
+      <div class="vcard-tag">Formatura</div>
+      <div class="vcard-inner"><div class="vcard-bg bg-a"></div><div class="vcard-overlay"></div><div class="vcard-play">&#9654;</div><div class="vcard-info"><span class="vcard-client">Nome do evento</span><span class="vcard-title">Baile de Formatura</span></div></div>
     </div>
-  </div>
-  <div class="portfolio-note">
-    <span class="portfolio-note-icon">✦</span>
-    <p>Portfólio em construção. Tenho <strong>vídeos prontos para compartilhar por WhatsApp</strong> — me chame e envio exemplos.</p>
   </div>
 </section>
 
@@ -507,7 +528,7 @@
 </section>
 
 <footer>
-  <div class="footer-name">Seu Nome</div>
+  <div class="footer-name">Isabela</div>
   <ul class="footer-socials">
     <li><a href="#">Instagram</a></li>
     <li><a href="#">YouTube</a></li>
@@ -519,34 +540,63 @@
 <script>
   document.getElementById('ano').textContent = new Date().getFullYear();
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
+  // Scroll reveal
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
       if (e.isIntersecting) {
         e.target.classList.add('in');
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 
-  window.addEventListener('load', () => {
-    const hl = document.querySelector('.hero-left');
-    const hr = document.querySelector('.hero-right');
+  // Hero entrance
+  window.addEventListener('load', function() {
+    var hl = document.querySelector('.hero-left');
+    var hr = document.querySelector('.hero-right');
     if (hl && hr) {
-      [hl, hr].forEach((el, i) => {
+      [hl, hr].forEach(function(el, i) {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
-        el.style.transition = `opacity 1.2s var(--ease) ${i * 0.2}s, transform 1.2s var(--ease) ${i * 0.2}s`;
+        el.style.transition = 'opacity 1.2s cubic-bezier(0.23,1,0.32,1) ' + (i * 0.2) + 's, transform 1.2s cubic-bezier(0.23,1,0.32,1) ' + (i * 0.2) + 's';
       });
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          [hl, hr].forEach(el => {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          [hl, hr].forEach(function(el) {
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
           });
         });
       });
     }
+  });
+
+  // Sistema de filtros
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('#galleryGrid .vcard');
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      var filter = btn.getAttribute('data-filter');
+
+      cards.forEach(function(card) {
+        var cat = card.getAttribute('data-cat');
+        var match = filter === 'todos' || cat === filter;
+
+        card.classList.remove('fade-in');
+        if (match) {
+          card.classList.remove('hidden');
+          void card.offsetWidth;
+          card.classList.add('fade-in');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
   });
 </script>
 </body>
